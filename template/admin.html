@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>{judulku}</title>
+
+
+
+<!-- Bootstrap core JavaScript -->
+<script src="{sumber}/template/vendor/jquery/jquery.min.js"></script>
+<script src="{sumber}/template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="{sumber}/template/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+
+<!-- Bootstrap core CSS -->
+<link href="{sumber}/template/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="{sumber}/template/vendor/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet">
+
+
+
+<link type="text/css" rel="stylesheet" href="{sumber}/template/mmenu/demo/css/demo.css" />
+<link type="text/css" rel="stylesheet" href="{sumber}/template/mmenu/dist/css/jquery.mmenu.all.css" />
+
+<script type="text/javascript" src="{sumber}/template/mmenu/dist/js/jquery.mmenu.all.min.js"></script>
+
+
+
+
+<style>
+  
+  #foo_footer {
+    position: fixed;
+    bottom: 0;
+  }
+</style>
+
+
+
+
+
+<script type="text/javascript">
+$(function() {
+$('nav#menu').mmenu({
+extensions	: [ 'effect-slide-menu', 'pageshadow' ],
+searchfield	: false,
+counters	: true,
+navbar 		: {
+title		: 'ADMIN'
+},
+navbars		: [
+{
+position	: 'top',
+content		: [
+'prev',
+'title',
+'close'
+]
+}, {
+position	: 'bottom',
+content		: [
+'ADMIN'
+]
+}
+]
+});
+});
+</script>
+
+
+
+
+  </head>
+
+  <body>
+
+
+<div id="page">
+
+
+<div class="header">
+<a href="#menu"></a>
+<table width="100%" border="0" cellspacing="0" cellpadding="3">
+<tr>
+<td>
+ADMIN
+</td>
+</tr>
+</table>
+
+</div>
+
+
+
+
+<div class="content">
+
+
+			<table width="100%" height="400" border="1" cellspacing="0" cellpadding="3" bgcolor="white">
+			<tr valign="top">
+			<td valign="top" align="left">
+
+			{isi}
+			
+			</td>
+			</tr>
+			</table>
+
+<hr>
+2018. {versi}
+<hr>
+</div>
+
+
+
+
+<nav id="menu">
+<ul>
+    <li>
+      <a href="{sumber}/adm/index.php">BERANDA</a>
+    </li>
+    <li>
+      <a href="{sumber}/adm/s_pass.php" title="Ganti Password">Ganti Password</a>
+    </li>
+    
+    
+    <li>
+    	<a href="#" title="Data Master">Data Master</a>
+    	<ul>
+    		
+    	<li>
+    		<a href="{sumber}/adm/m_agama.php" title="Data Agama">Data Agama</a>
+	    </li>
+	    
+    	<li>
+    		<a href="{sumber}/adm/m_poli.php" title="Data Poli">Data Poli</a>
+	    </li>
+    		
+    	<li>
+    		<a href="{sumber}/adm/m_suku.php" title="Data Suku">Data Suku</a>
+	    </li>
+	    
+    	<li>
+    		<a href="{sumber}/adm/m_pddkn.php" title="Data Pendidikan">Data Pendidikan</a>
+	    </li>
+	    
+    	<li>
+    		<a href="{sumber}/adm/m_kerja.php" title="Data Pekerjaan">Data Pekerjaan</a>
+	    </li>
+	    
+    	<li>
+    		<a href="{sumber}/adm/m_bayar.php" title="Data Jenis Bayar">Data Jenis Bayar</a>
+	    </li>
+	    
+    	<li>
+    		<a href="{sumber}/adm/m_gol_darah.php" title="Data Golongan Darah">Data Golongan Darah</a>
+	    </li>
+	    
+    	</ul>
+   </li>
+
+
+
+    <li>
+      <a href="{sumber}/adm/m_pasien.php" title="Data Pasien">Data Pasien</a>
+    </li>
+
+
+    <li>
+      <a href="{sumber}/adm/d_booking.php" title="Data Booking">Data Booking</a>
+    </li>
+
+
+
+    <li>
+      <a href="{sumber}/adm/bukutamu.php" title="Data Buku Tamu">Data Buku Tamu</a>
+    </li>
+
+    
+
+    <li>
+      <a href="{sumber}/adm/logout.php" title="LOGOUT">LOGOUT</a>
+    </li>
+
+</ul>
+</nav>
+</div>
+
+
+
+
+<div id="foo_footer">
+<div id="iproses" style="display:none">
+<img src="{sumber}/img/progress-bar.gif" width="100" height="16">
+</div>
+
+</div>
+
+
+</body>
+
+</html>
