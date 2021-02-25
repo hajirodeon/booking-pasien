@@ -27,10 +27,10 @@ $pdf->SetKeywords($keywords);
 
 
 //periksa
-$qyuk2 = mysql_query("SELECT * FROM pasien_periksa ".
+$qyuk2 = mysqli_query($koneksi, "SELECT * FROM pasien_periksa ".
 						"WHERE kd = '$kd' ".
 						"ORDER BY postdate DESC");
-$ryuk2 = mysql_fetch_assoc($qyuk2);
+$ryuk2 = mysqli_fetch_assoc($qyuk2);
 $yuk2_pasienkd = nosql($ryuk2['kd_pasien']);
 $yuk2_tgl = $ryuk2['tgl_periksa'];
 $yuk2_kode = balikin($ryuk2['kode_booking']);
@@ -40,9 +40,9 @@ $yuk2_poli = balikin($ryuk2['poli_nama']);
 
 
 //pasien
-$qyuk = mysql_query("SELECT * FROM pasien ".
+$qyuk = mysqli_query($koneksi, "SELECT * FROM pasien ".
 						"WHERE kd = '$yuk2_pasienkd'");
-$ryuk = mysql_fetch_assoc($qyuk);
+$ryuk = mysqli_fetch_assoc($qyuk);
 $yuk_nama = balikin($ryuk['nama']);
 
 

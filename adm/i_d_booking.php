@@ -28,11 +28,11 @@ if ($aksi == "simpan")
 	$e_kode = nosql($_GET['e_kode']);
 		
 	//periksa
-	$qyuk2 = mysql_query("SELECT * FROM pasien_periksa ".
+	$qyuk2 = mysqli_query($koneksi, "SELECT * FROM pasien_periksa ".
 							"WHERE kode_booking = '$e_kode' ".
 							"AND selesai = 'false'");
-	$ryuk2 = mysql_fetch_assoc($qyuk2);
-	$tyuk2 = mysql_num_rows($qyuk2);
+	$ryuk2 = mysqli_fetch_assoc($qyuk2);
+	$tyuk2 = mysqli_num_rows($qyuk2);
 	
 	//jika belum digunakan
 	if (!empty($tyuk2))
@@ -63,10 +63,10 @@ if ($aksi == "simpan")
 	
 			
 		//cek norm
-		$qcc = mysql_query("SELECT * FROM pasien ".
+		$qcc = mysqli_query($koneksi, "SELECT * FROM pasien ".
 								"WHERE kd = '$yuk2_pasienkd'");
-		$rcc = mysql_fetch_assoc($qcc);
-		$tcc = mysql_num_rows($qcc);
+		$rcc = mysqli_fetch_assoc($qcc);
+		$tcc = mysqli_num_rows($qcc);
 		$cc_norm = nosql($rcc['no_rm']);
 		$cc_nama = balikin($rcc['nama']);
 		$cc_ide_jenis = balikin($rcc['jenis_identitas']);
@@ -78,26 +78,26 @@ if ($aksi == "simpan")
 	
 	
 		//detail kecamatan
-		$qyuk = mysql_query("SELECT * FROM kecamatan ".
+		$qyuk = mysqli_query($koneksi, "SELECT * FROM kecamatan ".
 								"WHERE id_kec = '$cc_kecamatan'");
-		$ryuk = mysql_fetch_assoc($qyuk);
+		$ryuk = mysqli_fetch_assoc($qyuk);
 		$yuk_kec = balikin($ryuk['nama']);
 		
 		
 		
 		
 		//detail kabupaten
-		$qyuk = mysql_query("SELECT * FROM kabupaten ".
+		$qyuk = mysqli_query($koneksi, "SELECT * FROM kabupaten ".
 								"WHERE id_kab = '$cc_kabupaten'");
-		$ryuk = mysql_fetch_assoc($qyuk);
+		$ryuk = mysqli_fetch_assoc($qyuk);
 		$yuk_kab = balikin($ryuk['nama']);
 		
 		
 		
 		//detail provinsi
-		$qyuk = mysql_query("SELECT * FROM provinsi ".
+		$qyuk = mysqli_query($koneksi, "SELECT * FROM provinsi ".
 								"WHERE id_prov = '$cc_propinsi'");
-		$ryuk = mysql_fetch_assoc($qyuk);
+		$ryuk = mysqli_fetch_assoc($qyuk);
 		$yuk_prov = balikin($ryuk['nama']);
 		
 		
@@ -177,7 +177,7 @@ if ($aksi == "proses")
 		
 	
 	//selesaikan...
-	mysql_query("UPDATE pasien_periksa SET selesai = 'true' ".
+	mysqli_query($koneksi, "UPDATE pasien_periksa SET selesai = 'true' ".
 					"WHERE kd = '$e_kd'");
 					
 					

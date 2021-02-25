@@ -195,9 +195,9 @@ if ($aksi == "daftar")
 	
 	<?php
 	//detail edit..
-	$qpok = mysql_query("SELECT * FROM pasien ".
+	$qpok = mysqli_query($koneksi, "SELECT * FROM pasien ".
 							"WHERE kd = '$kdku'");
-	$rpok = mysql_fetch_assoc($qpok);
+	$rpok = mysqli_fetch_assoc($qpok);
 	$pok_nama = balikin($rpok['nama']);
 	$pok_alamat_jalan = balikin($rpok['alamat_jalan']);
 	$pok_alamat_rt = balikin($rpok['alamat_rt']);
@@ -215,9 +215,9 @@ if ($aksi == "daftar")
 
 
 	//propinsi
-	$query = mysql_query("SELECT * FROM provinsi ".
+	$query = mysqli_query($koneksi, "SELECT * FROM provinsi ".
 							"WHERE id_prov = '$pok_propinsi'");
-	$row = mysql_fetch_assoc($query);
+	$row = mysqli_fetch_assoc($query);
 	$pok_propinsi = balikin($row['nama']);
 
 
@@ -225,17 +225,17 @@ if ($aksi == "daftar")
 
 
 	//kabupaten
-	$query = mysql_query("SELECT * FROM kabupaten ".
+	$query = mysqli_query($koneksi, "SELECT * FROM kabupaten ".
 							"WHERE id_kab = '$pok_kabupaten'");
-	$row = mysql_fetch_assoc($query);
+	$row = mysqli_fetch_assoc($query);
 	$pok_kabupaten = balikin($row['nama']);
 
 
 
 	//kecamatan
-	$query = mysql_query("SELECT * FROM kecamatan ".
+	$query = mysqli_query($koneksi, "SELECT * FROM kecamatan ".
 							"WHERE id_kec = '$pok_kecamatan'");
-	$row = mysql_fetch_assoc($query);
+	$row = mysqli_fetch_assoc($query);
 	$pok_kecamatan = balikin($row['nama']);
 
 
@@ -264,9 +264,9 @@ if ($aksi == "daftar")
 	
 
 	//periksa	
-	$qpok2 = mysql_query("SELECT * FROM pasien_periksa ".
+	$qpok2 = mysqli_query($koneksi, "SELECT * FROM pasien_periksa ".
 							"WHERE kd_pasien = '$kdku'");
-	$rpok2 = mysql_fetch_assoc($qpok2);
+	$rpok2 = mysqli_fetch_assoc($qpok2);
 	$pok2_tgl_periksa = $rpok2['tgl_periksa'];
 	$pok2_poli_nama = balikin($rpok2['poli_nama']);
 
@@ -330,9 +330,9 @@ if ($aksi == "daftar")
 									
 									<?php
 									//jenis bayar
-									$qku = mysql_query("SELECT * FROM m_poli ".
+									$qku = mysqli_query($koneksi, "SELECT * FROM m_poli ".
 															"ORDER BY nama ASC");
-									$rku = mysql_fetch_assoc($qku);
+									$rku = mysqli_fetch_assoc($qku);
 									
 									do
 										{
@@ -343,7 +343,7 @@ if ($aksi == "daftar")
 										
 										echo '<option value="'.$ku_nama.'">'.$ku_nama.'</option>';
 										}
-									while ($rku = mysql_fetch_assoc($qku));
+									while ($rku = mysqli_fetch_assoc($qku));
 									
 									?>
 									
@@ -436,9 +436,9 @@ if ($aksi == "daftar")
 				<br>			
 				<?php
 					//Dapatkan semua 
-					$query = mysql_query("SELECT * FROM provinsi ".
+					$query = mysqli_query($koneksi, "SELECT * FROM provinsi ".
 											"ORDER BY nama ASC");
-					$row = mysql_fetch_assoc($query);
+					$row = mysqli_fetch_assoc($query);
 					?>
 					
 					<select name="provinsi" id="provinsi" class="btn btn-info">
@@ -451,7 +451,7 @@ if ($aksi == "daftar")
 									 
 					                echo '<option value="'.$r_idprov.'">'.$r_nama.'</option>';
 									}
-								while ($row = mysql_fetch_assoc($query));
+								while ($row = mysqli_fetch_assoc($query));
 					        ?>
 					</select>
 					</p>
@@ -606,15 +606,15 @@ if ($aksi == "simpan")
 	else
 		{
 		//cek
-		$qcc = mysql_query("SELECT * FROM m_pasien ".
+		$qcc = mysqli_query($koneksi, "SELECT * FROM m_pasien ".
 								"WHERE kd = '$kdku'");
-		$tcc = mysql_num_rows($qcc);
+		$tcc = mysqli_num_rows($qcc);
 		
 		//jika null
 		if (empty($tcc))
 			{
 			//insert
-			mysql_query("INSERT INTO pasien(kd, nama, alamat_jalan, alamat_rt, alamat_rw, alamat_kodepos, propinsi, kabupaten, kecamatan, ".
+			mysqli_query($koneksi, "INSERT INTO pasien(kd, nama, alamat_jalan, alamat_rt, alamat_rw, alamat_kodepos, propinsi, kabupaten, kecamatan, ".
 							"kelurahan, tmp_lahir, tgl_lahir, title, kelamin, postdate) VALUES ".
 							"('$kdku', '$e_nama', '$e_alamat', '$e_alamat_rt', '$e_alamat_rw', '$e_kodepos', '$e_provinsi', '$e_kabupaten', '$e_kecamatan', ".
 							"'$e_kelurahan', '$e_tmp_lahir', '$e_tgl_lahir', '$e_title', '$e_kelamin', '$today');");
@@ -623,7 +623,7 @@ if ($aksi == "simpan")
 		else
 			{
 			//update			
-			mysql_query("UPDATE pasien SET nama = '$e_nama', ".
+			mysqli_query($koneksi, "UPDATE pasien SET nama = '$e_nama', ".
 							"alamat_jalan = '$e_alamat', ".
 							"alamat_rt = '$e_alamat_rt', ".
 							"alamat_rw = '$e_alamat_rw', ".
@@ -643,12 +643,12 @@ if ($aksi == "simpan")
 	
 	
 			//insert
-		mysql_query("INSERT INTO pasien_periksa(kd, kd_pasien, tgl_periksa, poli_nama, kode_booking, postdate) VALUES ".
+		mysqli_query($koneksi, "INSERT INTO pasien_periksa(kd, kd_pasien, tgl_periksa, poli_nama, kode_booking, postdate) VALUES ".
 						"('$x', '$kdku', '$tgl_booking', '$e_poli', '$booking_kode', '$today');");
 
 	
 			//update
-		mysql_query("UPDATE pasien SET kode_booking = '$booking_kode' ".
+		mysqli_query($koneksi, "UPDATE pasien SET kode_booking = '$booking_kode' ".
 						"WHERE kd = '$kdku'");
 	
 			
@@ -802,9 +802,9 @@ if ($aksi == "daftar2")
 		
 	<?php
 	//detail..
-	$qyuk = mysql_query("SELECT * FROM pasien ".
+	$qyuk = mysqli_query($koneksi, "SELECT * FROM pasien ".
 							"WHERE kd = '$kdku'");
-	$ryuk = mysql_fetch_assoc($qyuk);	
+	$ryuk = mysqli_fetch_assoc($qyuk);	
 	$yuk_jenis_identitas = balikin($ryuk['jenis_identitas']);
 	$yuk_no_identitas = balikin($ryuk['no_identitas']);
 	$yuk_agama = balikin($ryuk['agama']);
@@ -822,9 +822,9 @@ if ($aksi == "daftar2")
 
 
 	//keluarga
-	$qjuk = mysql_query("SELECT * FROM pasien_keluarga ".
+	$qjuk = mysqli_query($koneksi, "SELECT * FROM pasien_keluarga ".
 							"WHERE kd_pasien = '$kdku'");
-	$rjuk = mysql_fetch_assoc($qjuk);
+	$rjuk = mysqli_fetch_assoc($qjuk);
 	$juk_nama_ayah = balikin($rjuk['nama_ayah']);
 	$juk_nama_ibu = balikin($rjuk['nama_ibu']);
 	$juk_nama_keluarga = balikin($rjuk['nama_keluarga']);
@@ -843,9 +843,9 @@ if ($aksi == "daftar2")
 
 
 	//propinsi
-	$query = mysql_query("SELECT * FROM provinsi ".
+	$query = mysqli_query($koneksi, "SELECT * FROM provinsi ".
 							"WHERE id_prov = '$juk_propinsi'");
-	$row = mysql_fetch_assoc($query);
+	$row = mysqli_fetch_assoc($query);
 	$juk_propinsi = balikin($row['nama']);
 
 
@@ -853,17 +853,17 @@ if ($aksi == "daftar2")
 
 
 	//kabupaten
-	$query = mysql_query("SELECT * FROM kabupaten ".
+	$query = mysqli_query($koneksi, "SELECT * FROM kabupaten ".
 							"WHERE id_kab = '$juk_kabupaten'");
-	$row = mysql_fetch_assoc($query);
+	$row = mysqli_fetch_assoc($query);
 	$juk_kabupaten = balikin($row['nama']);
 
 
 
 	//kecamatan
-	$query = mysql_query("SELECT * FROM kecamatan ".
+	$query = mysqli_query($koneksi, "SELECT * FROM kecamatan ".
 							"WHERE id_kec = '$juk_kecamatan'");
-	$row = mysql_fetch_assoc($query);
+	$row = mysqli_fetch_assoc($query);
 	$juk_kecamatan = balikin($row['nama']);
 
 
@@ -903,9 +903,9 @@ if ($aksi == "daftar2")
 					
 					<?php 
 					//daftar agama
-					$qyuk = mysql_query("SELECT * FROM m_agama ".
+					$qyuk = mysqli_query($koneksi, "SELECT * FROM m_agama ".
 											"ORDER BY nama ASC");
-					$ryuk = mysql_fetch_assoc($qyuk);
+					$ryuk = mysqli_fetch_assoc($qyuk);
 					
 					do
 						{
@@ -914,7 +914,7 @@ if ($aksi == "daftar2")
 						
 						echo '<option value="'.$yuk_nama.'">'.$yuk_nama.'</option>';
 						}
-					while ($ryuk = mysql_fetch_assoc($qyuk));
+					while ($ryuk = mysqli_fetch_assoc($qyuk));
 
 					?>
 					</select>
@@ -947,9 +947,9 @@ if ($aksi == "daftar2")
 					
 					<?php 
 					//daftar 
-					$qyuk = mysql_query("SELECT * FROM m_pendidikan ".
+					$qyuk = mysqli_query($koneksi, "SELECT * FROM m_pendidikan ".
 											"ORDER BY nama ASC");
-					$ryuk = mysql_fetch_assoc($qyuk);
+					$ryuk = mysqli_fetch_assoc($qyuk);
 					
 					do
 						{
@@ -958,7 +958,7 @@ if ($aksi == "daftar2")
 						
 						echo '<option value="'.$yuk_nama.'">'.$yuk_nama.'</option>';
 						}
-					while ($ryuk = mysql_fetch_assoc($qyuk));
+					while ($ryuk = mysqli_fetch_assoc($qyuk));
 
 					?>
 					</select>
@@ -973,9 +973,9 @@ if ($aksi == "daftar2")
 
 					<?php 
 					//daftar 
-					$qyuk = mysql_query("SELECT * FROM m_pekerjaan ".
+					$qyuk = mysqli_query($koneksi, "SELECT * FROM m_pekerjaan ".
 											"ORDER BY nama ASC");
-					$ryuk = mysql_fetch_assoc($qyuk);
+					$ryuk = mysqli_fetch_assoc($qyuk);
 					
 					do
 						{
@@ -984,7 +984,7 @@ if ($aksi == "daftar2")
 						
 						echo '<option value="'.$yuk_nama.'">'.$yuk_nama.'</option>';
 						}
-					while ($ryuk = mysql_fetch_assoc($qyuk));
+					while ($ryuk = mysqli_fetch_assoc($qyuk));
 
 					?>
 					</select>
@@ -1000,9 +1000,9 @@ if ($aksi == "daftar2")
 					
 					<?php 
 					//daftar 
-					$qyuk = mysql_query("SELECT * FROM m_suku ".
+					$qyuk = mysqli_query($koneksi, "SELECT * FROM m_suku ".
 											"ORDER BY nama ASC");
-					$ryuk = mysql_fetch_assoc($qyuk);
+					$ryuk = mysqli_fetch_assoc($qyuk);
 					
 					do
 						{
@@ -1011,7 +1011,7 @@ if ($aksi == "daftar2")
 						
 						echo '<option value="'.$yuk_nama.'">'.$yuk_nama.'</option>';
 						}
-					while ($ryuk = mysql_fetch_assoc($qyuk));
+					while ($ryuk = mysqli_fetch_assoc($qyuk));
 
 					?>
 					
@@ -1050,9 +1050,9 @@ if ($aksi == "daftar2")
 
 					<?php 
 					//daftar 
-					$qyuk = mysql_query("SELECT * FROM m_gol_darah ".
+					$qyuk = mysqli_query($koneksi, "SELECT * FROM m_gol_darah ".
 											"ORDER BY nama ASC");
-					$ryuk = mysql_fetch_assoc($qyuk);
+					$ryuk = mysqli_fetch_assoc($qyuk);
 					
 					do
 						{
@@ -1061,7 +1061,7 @@ if ($aksi == "daftar2")
 						
 						echo '<option value="'.$yuk_nama.'">'.$yuk_nama.'</option>';
 						}
-					while ($ryuk = mysql_fetch_assoc($qyuk));
+					while ($ryuk = mysqli_fetch_assoc($qyuk));
 
 					?>
 					</select>
@@ -1122,9 +1122,9 @@ if ($aksi == "daftar2")
 				<p>
 				<?php
 					//Dapatkan semua 
-					$query = mysql_query("SELECT * FROM provinsi ".
+					$query = mysqli_query($koneksi, "SELECT * FROM provinsi ".
 											"ORDER BY nama ASC");
-					$row = mysql_fetch_assoc($query);
+					$row = mysqli_fetch_assoc($query);
 					?>
 					Propinsi :
 					<br>		
@@ -1138,7 +1138,7 @@ if ($aksi == "daftar2")
 									 
 					                echo '<option value="'.$r_idprov.'">'.$r_nama.'</option>';
 									}
-								while ($row = mysql_fetch_assoc($query));
+								while ($row = mysqli_fetch_assoc($query));
 					        ?>
 					</select>
 					
@@ -1277,7 +1277,7 @@ if ($aksi == "simpan2")
 	else
 		{
 		//update
-		mysql_query("UPDATE pasien SET jenis_identitas = '$e_jenis', ".
+		mysqli_query($koneksi, "UPDATE pasien SET jenis_identitas = '$e_jenis', ".
 						"no_identitas = '$e_jenis_no', ".
 						"agama = '$e_agama', ".
 						"telepon = '$e_telp', ".
@@ -1326,15 +1326,15 @@ if ($aksi == "simpan2")
 
 
 	//cek
-	$qcc = mysql_query("SELECT * FROM m_pasien_keluarga ".
+	$qcc = mysqli_query($koneksi, "SELECT * FROM m_pasien_keluarga ".
 							"WHERE kd_pasien = '$kdku'");
-	$tcc = mysql_num_rows($qcc);
+	$tcc = mysqli_num_rows($qcc);
 	
 	//jika null
 	if (empty($tcc))
 		{
 		//insert
-		mysql_query("INSERT INTO pasien_keluarga(kd, kd_pasien, nama_ayah, nama_ibu, nama_keluarga, ".
+		mysqli_query($koneksi, "INSERT INTO pasien_keluarga(kd, kd_pasien, nama_ayah, nama_ibu, nama_keluarga, ".
 						"nama_pasangan, propinsi, kabupaten, kecamatan, kelurahan, alamat_jalan, ".
 						"alamat_rt, alamat_rw, alamat_kodepos, postdate) VALUES ".
 						"('$x', '$kdku', '$e_nama_ayah', '$e_nama_ibu', '$e_nama_keluarga', ".
@@ -1345,7 +1345,7 @@ if ($aksi == "simpan2")
 	else
 		{
 		//update
-		mysql_query("UPDATE pasien_keluarga SET nama_ayah = '$e_nama_ayah', ".
+		mysqli_query($koneksi, "UPDATE pasien_keluarga SET nama_ayah = '$e_nama_ayah', ".
 						"nama_ibu = '$e_nama_ibu', ".
 						"nama_keluarga = '$e_nama_keluarga', ".
 						"nama_pasangan = '$e_nama_pasangan', ".
@@ -1475,9 +1475,9 @@ if ($aksi == "daftar3")
 	<form name="formx23" id="formx23">
 	<?php
 	//jenis bayar
-	$qpuk = mysql_query("SELECT * FROM pasien_jenisbayar ".
+	$qpuk = mysqli_query($koneksi, "SELECT * FROM pasien_jenisbayar ".
 							"WHERE kd_pasien = '$kdku'");
-	$rpuk = mysql_fetch_assoc($qpuk);
+	$rpuk = mysqli_fetch_assoc($qpuk);
 	$puk_jenis = balikin($rpuk['jenis_bayar']);		
 	
 	
@@ -1515,9 +1515,9 @@ if ($aksi == "daftar3")
 						
 						<?php
 						//jenis bayar
-						$qku = mysql_query("SELECT * FROM m_jenisbayar ".
+						$qku = mysqli_query($koneksi, "SELECT * FROM m_jenisbayar ".
 												"ORDER BY nama ASC");
-						$rku = mysql_fetch_assoc($qku);
+						$rku = mysqli_fetch_assoc($qku);
 						
 						do
 							{
@@ -1528,7 +1528,7 @@ if ($aksi == "daftar3")
 							
 							echo '<option value="'.$ku_nama.'">'.$ku_nama.'</option>';
 							}
-						while ($rku = mysql_fetch_assoc($qku));
+						while ($rku = mysqli_fetch_assoc($qku));
 						
 						?>
 						
@@ -1596,22 +1596,22 @@ if ($aksi == "simpan3")
 	else
 		{
 		//cek
-		$qcc = mysql_query("SELECT * FROM pasien_jenisbayar ".
+		$qcc = mysqli_query($koneksi, "SELECT * FROM pasien_jenisbayar ".
 								"WHERE kd_pasien = '$kdku'");
-		$tcc = mysql_num_rows($qcc);
+		$tcc = mysqli_num_rows($qcc);
 		
 		//jika null
 		if (empty($tcc))
 			{
 			//insert
-			mysql_query("INSERT INTO pasien_jenisbayar(kd, kd_pasien, jenis_bayar, postdate) VALUES ".
+			mysqli_query($koneksi, "INSERT INTO pasien_jenisbayar(kd, kd_pasien, jenis_bayar, postdate) VALUES ".
 							"('$x', '$kdku', '$e_jenis', '$today');");
 			}
 
 		else
 			{
 			//update
-			mysql_query("UPDATE pasien_jenisbayar SET jenis_bayar = '$e_jenis' ".
+			mysqli_query($koneksi, "UPDATE pasien_jenisbayar SET jenis_bayar = '$e_jenis' ".
 							"WHERE kd_pasien = '$kdku'");		
 			}
 
@@ -1645,18 +1645,18 @@ if ($aksi == "daftar4")
 
 
 	//ketahui rm terakhir
-	$qcc2 = mysql_query("SELECT * FROM pasien ".
+	$qcc2 = mysqli_query($koneksi, "SELECT * FROM pasien ".
 							"ORDER BY round(no_rm) DESC");
-	$rcc2 = mysql_fetch_assoc($qcc2);
+	$rcc2 = mysqli_fetch_assoc($qcc2);
 	$cc2_norm = nosql($rcc2['no_rm']);
 	
 	
 		
 	//cek norm
-	$qcc = mysql_query("SELECT * FROM pasien ".
+	$qcc = mysqli_query($koneksi, "SELECT * FROM pasien ".
 							"WHERE kd = '$kdku'");
-	$rcc = mysql_fetch_assoc($qcc);
-	$tcc = mysql_num_rows($qcc);
+	$rcc = mysqli_fetch_assoc($qcc);
+	$tcc = mysqli_num_rows($qcc);
 	$cc_norm = nosql($rcc['no_rm']);
 	$cc_nama = balikin($rcc['nama']);
 	$cc_ide_jenis = balikin($rcc['jenis_identitas']);
@@ -1671,26 +1671,26 @@ if ($aksi == "daftar4")
 
 
 	//detail kecamatan
-	$qyuk = mysql_query("SELECT * FROM kecamatan ".
+	$qyuk = mysqli_query($koneksi, "SELECT * FROM kecamatan ".
 							"WHERE id_kec = '$cc_kecamatan'");
-	$ryuk = mysql_fetch_assoc($qyuk);
+	$ryuk = mysqli_fetch_assoc($qyuk);
 	$yuk_kec = balikin($ryuk['nama']);
 	
 	
 	
 	
 	//detail kabupaten
-	$qyuk = mysql_query("SELECT * FROM kabupaten ".
+	$qyuk = mysqli_query($koneksi, "SELECT * FROM kabupaten ".
 							"WHERE id_kab = '$cc_kabupaten'");
-	$ryuk = mysql_fetch_assoc($qyuk);
+	$ryuk = mysqli_fetch_assoc($qyuk);
 	$yuk_kab = balikin($ryuk['nama']);
 	
 	
 	
 	//detail provinsi
-	$qyuk = mysql_query("SELECT * FROM provinsi ".
+	$qyuk = mysqli_query($koneksi, "SELECT * FROM provinsi ".
 							"WHERE id_prov = '$cc_propinsi'");
-	$ryuk = mysql_fetch_assoc($qyuk);
+	$ryuk = mysqli_fetch_assoc($qyuk);
 	$yuk_prov = balikin($ryuk['nama']);
 	
 	
@@ -1722,23 +1722,23 @@ if ($aksi == "daftar4")
 		$booking = "$tanggal$passbaru";
 		
 		//update
-		mysql_query("UPDATE pasien SET no_rm = '$cc_norm1', ".
+		mysqli_query($koneksi, "UPDATE pasien SET no_rm = '$cc_norm1', ".
 						"kode_booking = '$booking' ".
 						"WHERE kd = '$kdku'");
 	
 	
 		//update
-		mysql_query("UPDATE pasien_periksa SET kode_booking = '$booking', ".
+		mysqli_query($koneksi, "UPDATE pasien_periksa SET kode_booking = '$booking', ".
 						"postdate_booking = '$today' ".
 						"WHERE kd_pasien = '$kdku'");
 		}
 
 
 	//detail
-	$qcc = mysql_query("SELECT * FROM pasien ".
+	$qcc = mysqli_query($koneksi, "SELECT * FROM pasien ".
 							"WHERE kd = '$kdku'");
-	$rcc = mysql_fetch_assoc($qcc);
-	$tcc = mysql_num_rows($qcc);
+	$rcc = mysqli_fetch_assoc($qcc);
+	$tcc = mysqli_num_rows($qcc);
 	$booking = balikin($rcc['kode_booking']);
 	$cc_norm1 = balikin($rcc['no_rm']);
 
@@ -1746,10 +1746,10 @@ if ($aksi == "daftar4")
 
 		
 	//periksa
-	$qyuk2 = mysql_query("SELECT * FROM pasien_periksa ".
+	$qyuk2 = mysqli_query($koneksi, "SELECT * FROM pasien_periksa ".
 							"WHERE kd_pasien = '$kdku' ".
 							"ORDER BY postdate DESC");
-	$ryuk2 = mysql_fetch_assoc($qyuk2);
+	$ryuk2 = mysqli_fetch_assoc($qyuk2);
 	$yuk2_kd = nosql($ryuk2['kd']);
 	$yuk2_tgl = $ryuk2['tgl_periksa'];
 	$yuk2_poli = balikin($ryuk2['poli_nama']);

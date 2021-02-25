@@ -18,10 +18,10 @@ if(isset($_POST["id_provinsi"]) && !empty($_POST["id_provinsi"]))
 	{
 	echo '<option value="" selected></option>';
 	
-	$qku = mysql_query("SELECT * FROM kabupaten ".
+	$qku = mysqli_query($koneksi, "SELECT * FROM kabupaten ".
 							"WHERE id_prov = '$id_provinsi' ".
   							"ORDER BY nama ASC");
-	$rku = mysql_fetch_assoc($qku);
+	$rku = mysqli_fetch_assoc($qku);
 
 	do
 		{
@@ -30,7 +30,7 @@ if(isset($_POST["id_provinsi"]) && !empty($_POST["id_provinsi"]))
 
 		echo '<option value="'.$ku_idkab.'">'.$ku_nama.'</option>';
 		}
-	while ($rku = mysql_fetch_assoc($qku));
+	while ($rku = mysqli_fetch_assoc($qku));
 	
 	exit();
   	}
@@ -42,10 +42,10 @@ if(isset($_POST["id_kabupaten"]) && !empty($_POST["id_kabupaten"]))
 	{
 	echo '<option value="" selected></option>';
 	
-	$qku = mysql_query("SELECT * FROM kecamatan ".
+	$qku = mysqli_query($koneksi, "SELECT * FROM kecamatan ".
 							"WHERE id_kab = '$id_kabupaten' ".
   							"ORDER BY nama ASC");
-	$rku = mysql_fetch_assoc($qku);
+	$rku = mysqli_fetch_assoc($qku);
 
 	do
 		{
@@ -54,7 +54,7 @@ if(isset($_POST["id_kabupaten"]) && !empty($_POST["id_kabupaten"]))
 
 		echo '<option value="'.$ku_idkec.'">'.$ku_nama.'</option>';
 		}
-	while ($rku = mysql_fetch_assoc($qku));
+	while ($rku = mysqli_fetch_assoc($qku));
 	
 	exit();
   	}

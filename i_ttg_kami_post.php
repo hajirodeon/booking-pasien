@@ -48,7 +48,7 @@ if ($aksi == "simpan")
 		if ($_SESSION['cekya'] != $e_nama)
 			{
 			//insert
-			mysql_query("INSERT INTO bukutamu(kd, nama, alamat, telp, email, isi, postdate) VALUES ".
+			mysqli_query($koneksi, "INSERT INTO bukutamu(kd, nama, alamat, telp, email, isi, postdate) VALUES ".
 							"('$x', '$e_nama', '$e_alamat', '$e_telp', '$e_email', '$e_isi', '$today');");
 	
 					

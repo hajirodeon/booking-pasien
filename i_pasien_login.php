@@ -158,9 +158,9 @@ if ($aksi == "daftar")
 						
 						<?php
 						//jenis bayar
-						$qku = mysql_query("SELECT * FROM m_poli ".
+						$qku = mysqli_query($koneksi, "SELECT * FROM m_poli ".
 												"ORDER BY nama ASC");
-						$rku = mysql_fetch_assoc($qku);
+						$rku = mysqli_fetch_assoc($qku);
 						
 						do
 							{
@@ -171,7 +171,7 @@ if ($aksi == "daftar")
 							
 							echo '<option value="'.$ku_nama.'">'.$ku_nama.'</option>';
 							}
-						while ($rku = mysql_fetch_assoc($qku));
+						while ($rku = mysqli_fetch_assoc($qku));
 						
 						?>
 						
@@ -278,10 +278,10 @@ if ($aksi == "simpan")
 	else
 		{
 		//deteksi pasien
-		$qku = mysql_query("SELECT * FROM pasien ".
+		$qku = mysqli_query($koneksi, "SELECT * FROM pasien ".
 								"WHERE no_rm = '$e_norm'");
-		$rku = mysql_fetch_assoc($qku);
-		$tku = mysql_num_rows($qku);
+		$rku = mysqli_fetch_assoc($qku);
+		$tku = mysqli_num_rows($qku);
 		$ku_kd = nosql($rku['kd']);
 		$ku_nama = balikin($rku['nama']);
 		
@@ -289,21 +289,21 @@ if ($aksi == "simpan")
 		if (!empty($tku))
 			{
 			//insert
-			mysql_query("INSERT INTO pasien_periksa(kd, kd_pasien, tgl_periksa, poli_nama, kode_booking, postdate) VALUES ".
+			mysqli_query($koneksi, "INSERT INTO pasien_periksa(kd, kd_pasien, tgl_periksa, poli_nama, kode_booking, postdate) VALUES ".
 							"('$x', '$ku_kd', '$tgl_booking', '$e_poli', '$booking_kode', '$today');");
 
 
 			//update
-			mysql_query("UPDATE pasien SET kode_booking = '$booking_kode' ".
+			mysqli_query($koneksi, "UPDATE pasien SET kode_booking = '$booking_kode' ".
 							"WHERE kd = '$ku_kd'");
 		
 		
 		
 			//periksa
-			$qyuk2 = mysql_query("SELECT * FROM pasien_periksa ".
+			$qyuk2 = mysqli_query($koneksi, "SELECT * FROM pasien_periksa ".
 									"WHERE kd_pasien = '$ku_kd' ".
 									"ORDER BY postdate DESC");
-			$ryuk2 = mysql_fetch_assoc($qyuk2);
+			$ryuk2 = mysqli_fetch_assoc($qyuk2);
 			$yuk2_kd = nosql($ryuk2['kd']);
 			$yuk2_tgl = $ryuk2['tgl_periksa'];
 			$yuk2_poli = balikin($ryuk2['poli_nama']);
@@ -313,7 +313,7 @@ if ($aksi == "simpan")
 			$booking = "$tanggal$passbaru";
 			
 			//update
-			mysql_query("UPDATE pasien SET kode_booking = '$booking' ".
+			mysqli_query($koneksi, "UPDATE pasien SET kode_booking = '$booking' ".
 							"WHERE kd = '$ku_kd'");
 		
 						

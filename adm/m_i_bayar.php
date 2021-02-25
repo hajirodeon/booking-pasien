@@ -43,10 +43,10 @@ if ($aksi == "daftar")
 	<input name="btn1" id="btn1" type="button" value="ENTRI BARU" class="btn btn-info">';
 	
 	//tampilkan daftar...
-	$qku = mysql_query("SELECT * FROM m_jenisbayar ".
+	$qku = mysqli_query($koneksi, "SELECT * FROM m_jenisbayar ".
 							"ORDER BY nama ASC");
-	$rku = mysql_fetch_assoc($qku);
-	$tku = mysql_num_rows($qku);
+	$rku = mysqli_fetch_assoc($qku);
+	$tku = mysqli_num_rows($qku);
 	
 	//jika null
 	if (!empty($tku))
@@ -101,7 +101,7 @@ if ($aksi == "daftar")
 			</tr>';
 				
 			}
-		while ($rku = mysql_fetch_assoc($qku));
+		while ($rku = mysqli_fetch_assoc($qku));
 		
 		
 		echo '</table>';
@@ -132,9 +132,9 @@ if ($aksi == "edit")
 	
 	
 	//detail isinya...
-	$qku = mysql_query("SELECT * FROM m_jenisbayar ".
+	$qku = mysqli_query($koneksi, "SELECT * FROM m_jenisbayar ".
 							"WHERE kd = '$kd'");
-	$rku = mysql_fetch_assoc($qku);
+	$rku = mysqli_fetch_assoc($qku);
 	$ku_nama = balikin($rku['nama']);
 	
 	?>
@@ -234,7 +234,7 @@ if ($aksi == "simpan2")
 	else
 		{
 		//update
-		mysql_query("UPDATE m_jenisbayar SET nama = '$e_nama' ".
+		mysqli_query($koneksi, "UPDATE m_jenisbayar SET nama = '$e_nama' ".
 						"WHERE kd = '$e_kd'");
 		
 		echo "<h3>UPDATE BERHASIL</h3>";
@@ -354,15 +354,15 @@ if ($aksi == "simpan")
 	else
 		{
 		//cek dulu....
-		$qcc = mysql_query("SELECT * FROM m_jenisbayar ".
+		$qcc = mysqli_query($koneksi, "SELECT * FROM m_jenisbayar ".
 								"WHERE nama = '$e_nama'");
-		$tcc = mysql_num_rows($qcc);
+		$tcc = mysqli_num_rows($qcc);
 		
 		//jika null
 		if (empty($tcc))
 			{
 			//insert
-			mysql_query("INSERT INTO m_jenisbayar(kd, nama, postdate) VALUES ".
+			mysqli_query($koneksi, "INSERT INTO m_jenisbayar(kd, nama, postdate) VALUES ".
 							"('$x', '$e_nama', '$today');");
 		
 			echo "<h3>ENTRI BERHASIL</h3>";
@@ -392,7 +392,7 @@ if ($aksi == "hapus")
 
 	
 	//hapus
-	mysql_query("DELETE FROM m_jenisbayar ".
+	mysqli_query($koneksi, "DELETE FROM m_jenisbayar ".
 					"WHERE kd = '$kd'");
 	
 	//re-direct

@@ -152,10 +152,10 @@ else
 	<td width="700">';
 	
 	//tampilkan daftar...
-	$qku = mysql_query("SELECT * FROM m_poli ".
+	$qku = mysqli_query($koneksi, "SELECT * FROM m_poli ".
 							"ORDER BY nama ASC");
-	$rku = mysql_fetch_assoc($qku);
-	$tku = mysql_num_rows($qku);
+	$rku = mysqli_fetch_assoc($qku);
+	$tku = mysqli_num_rows($qku);
 	
 	echo '<table border="1" cellpadding="3" cellspacing="3" width="600" bgcolor="orange">
 	<tr bgcolor="'.$warnaheader.'">
@@ -194,25 +194,25 @@ else
 		
 		
 		//ketahui jumlah...
-		$qyuk = mysql_query("SELECT * FROM pasien_periksa ".
+		$qyuk = mysqli_query($koneksi, "SELECT * FROM pasien_periksa ".
 								"WHERE poli_nama = '$ku_nama' ".	
 								"AND round(DATE_FORMAT(tgl_periksa, '%d')) = '$utgl' ".
 								"AND round(DATE_FORMAT(tgl_periksa, '%m')) = '$ubln' ".
 								"AND round(DATE_FORMAT(tgl_periksa, '%Y')) = '$uthn'");
-		$tyuk = mysql_num_rows($qyuk);
+		$tyuk = mysqli_num_rows($qyuk);
 
 
 
 
 
 		//ketahui jumlah... selesai
-		$qyuk2 = mysql_query("SELECT * FROM pasien_periksa ".
+		$qyuk2 = mysqli_query($koneksi, "SELECT * FROM pasien_periksa ".
 								"WHERE poli_nama = '$ku_nama' ".	
 								"AND round(DATE_FORMAT(tgl_periksa, '%d')) = '$utgl' ".
 								"AND round(DATE_FORMAT(tgl_periksa, '%m')) = '$ubln' ".
 								"AND round(DATE_FORMAT(tgl_periksa, '%Y')) = '$uthn' ".
 								"AND selesai = 'true'");
-		$tyuk2 = mysql_num_rows($qyuk2);
+		$tyuk2 = mysqli_num_rows($qyuk2);
 
 
 
@@ -230,7 +230,7 @@ else
 		</tr>';
 			
 		}
-	while ($rku = mysql_fetch_assoc($qku));
+	while ($rku = mysqli_fetch_assoc($qku));
 	
 	
 	echo '</table>

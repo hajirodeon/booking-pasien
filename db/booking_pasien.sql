@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 01, 2018 at 04:26 AM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- Waktu pembuatan: 25 Feb 2021 pada 09.48
+-- Versi server: 10.4.14-MariaDB
+-- Versi PHP: 7.4.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,24 +18,24 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `booking-pasien`
+-- Database: `booking_pasien`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `adminx`
+-- Struktur dari tabel `adminx`
 --
 
 CREATE TABLE `adminx` (
   `kd` int(10) NOT NULL,
-  `usernamex` varchar(100) NOT NULL,
-  `passwordx` varchar(100) NOT NULL,
-  `postdate` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `usernamex` varchar(100) DEFAULT NULL,
+  `passwordx` varchar(100) DEFAULT NULL,
+  `postdate` datetime DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `adminx`
+-- Dumping data untuk tabel `adminx`
 --
 
 INSERT INTO `adminx` (`kd`, `usernamex`, `passwordx`, `postdate`) VALUES
@@ -43,21 +44,21 @@ INSERT INTO `adminx` (`kd`, `usernamex`, `passwordx`, `postdate`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bukutamu`
+-- Struktur dari tabel `bukutamu`
 --
 
 CREATE TABLE `bukutamu` (
   `kd` varchar(50) NOT NULL,
-  `nama` varchar(100) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `isi` longtext NOT NULL,
-  `postdate` datetime NOT NULL,
-  `alamat` varchar(100) NOT NULL,
-  `telp` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `nama` varchar(100) DEFAULT NULL,
+  `email` longtext DEFAULT NULL,
+  `isi` longtext DEFAULT NULL,
+  `postdate` datetime DEFAULT NULL,
+  `alamat` longtext DEFAULT NULL,
+  `telp` varchar(100) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `bukutamu`
+-- Dumping data untuk tabel `bukutamu`
 --
 
 INSERT INTO `bukutamu` (`kd`, `nama`, `email`, `isi`, `postdate`, `alamat`, `telp`) VALUES
@@ -67,17 +68,17 @@ INSERT INTO `bukutamu` (`kd`, `nama`, `email`, `isi`, `postdate`, `alamat`, `tel
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kabupaten`
+-- Struktur dari tabel `kabupaten`
 --
 
 CREATE TABLE `kabupaten` (
   `id_kab` varchar(10) NOT NULL,
-  `id_prov` varchar(10) NOT NULL,
-  `nama` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id_prov` varchar(10) DEFAULT NULL,
+  `nama` varchar(100) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `kabupaten`
+-- Dumping data untuk tabel `kabupaten`
 --
 
 INSERT INTO `kabupaten` (`id_kab`, `id_prov`, `nama`) VALUES
@@ -599,17 +600,17 @@ INSERT INTO `kabupaten` (`id_kab`, `id_prov`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kecamatan`
+-- Struktur dari tabel `kecamatan`
 --
 
 CREATE TABLE `kecamatan` (
   `id_kec` varchar(10) NOT NULL,
-  `id_kab` varchar(10) NOT NULL,
-  `nama` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id_kab` varchar(10) DEFAULT NULL,
+  `nama` varchar(100) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `kecamatan`
+-- Dumping data untuk tabel `kecamatan`
 --
 
 INSERT INTO `kecamatan` (`id_kec`, `id_kab`, `nama`) VALUES
@@ -7715,17 +7716,17 @@ INSERT INTO `kecamatan` (`id_kec`, `id_kab`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `m_agama`
+-- Struktur dari tabel `m_agama`
 --
 
 CREATE TABLE `m_agama` (
   `kd` varchar(50) NOT NULL,
-  `nama` varchar(100) NOT NULL,
-  `postdate` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `nama` varchar(100) DEFAULT NULL,
+  `postdate` datetime DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `m_agama`
+-- Dumping data untuk tabel `m_agama`
 --
 
 INSERT INTO `m_agama` (`kd`, `nama`, `postdate`) VALUES
@@ -7739,17 +7740,17 @@ INSERT INTO `m_agama` (`kd`, `nama`, `postdate`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `m_gol_darah`
+-- Struktur dari tabel `m_gol_darah`
 --
 
 CREATE TABLE `m_gol_darah` (
   `kd` varchar(50) NOT NULL,
-  `nama` varchar(100) NOT NULL,
-  `postdate` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `nama` varchar(100) DEFAULT NULL,
+  `postdate` datetime DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `m_gol_darah`
+-- Dumping data untuk tabel `m_gol_darah`
 --
 
 INSERT INTO `m_gol_darah` (`kd`, `nama`, `postdate`) VALUES
@@ -7761,17 +7762,17 @@ INSERT INTO `m_gol_darah` (`kd`, `nama`, `postdate`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `m_jenisbayar`
+-- Struktur dari tabel `m_jenisbayar`
 --
 
 CREATE TABLE `m_jenisbayar` (
   `kd` varchar(50) NOT NULL,
-  `nama` varchar(100) NOT NULL,
-  `postdate` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `nama` varchar(100) DEFAULT NULL,
+  `postdate` datetime DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `m_jenisbayar`
+-- Dumping data untuk tabel `m_jenisbayar`
 --
 
 INSERT INTO `m_jenisbayar` (`kd`, `nama`, `postdate`) VALUES
@@ -7801,17 +7802,17 @@ INSERT INTO `m_jenisbayar` (`kd`, `nama`, `postdate`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `m_pekerjaan`
+-- Struktur dari tabel `m_pekerjaan`
 --
 
 CREATE TABLE `m_pekerjaan` (
   `kd` int(5) NOT NULL,
-  `nama` varchar(100) NOT NULL,
-  `postdate` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `nama` varchar(100) DEFAULT NULL,
+  `postdate` datetime DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `m_pekerjaan`
+-- Dumping data untuk tabel `m_pekerjaan`
 --
 
 INSERT INTO `m_pekerjaan` (`kd`, `nama`, `postdate`) VALUES
@@ -7890,17 +7891,17 @@ INSERT INTO `m_pekerjaan` (`kd`, `nama`, `postdate`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `m_pendidikan`
+-- Struktur dari tabel `m_pendidikan`
 --
 
 CREATE TABLE `m_pendidikan` (
   `kd` varchar(50) NOT NULL,
-  `nama` varchar(100) NOT NULL,
-  `postdate` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `nama` varchar(100) DEFAULT NULL,
+  `postdate` datetime DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `m_pendidikan`
+-- Dumping data untuk tabel `m_pendidikan`
 --
 
 INSERT INTO `m_pendidikan` (`kd`, `nama`, `postdate`) VALUES
@@ -7926,17 +7927,17 @@ INSERT INTO `m_pendidikan` (`kd`, `nama`, `postdate`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `m_poli`
+-- Struktur dari tabel `m_poli`
 --
 
 CREATE TABLE `m_poli` (
   `kd` varchar(50) NOT NULL,
-  `nama` varchar(100) NOT NULL,
-  `postdate` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `nama` varchar(100) DEFAULT NULL,
+  `postdate` datetime DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `m_poli`
+-- Dumping data untuk tabel `m_poli`
 --
 
 INSERT INTO `m_poli` (`kd`, `nama`, `postdate`) VALUES
@@ -7982,17 +7983,17 @@ INSERT INTO `m_poli` (`kd`, `nama`, `postdate`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `m_suku`
+-- Struktur dari tabel `m_suku`
 --
 
 CREATE TABLE `m_suku` (
   `kd` varchar(50) NOT NULL,
-  `nama` varchar(100) NOT NULL,
-  `postdate` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `nama` varchar(100) DEFAULT NULL,
+  `postdate` datetime DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `m_suku`
+-- Dumping data untuk tabel `m_suku`
 --
 
 INSERT INTO `m_suku` (`kd`, `nama`, `postdate`) VALUES
@@ -8018,43 +8019,43 @@ INSERT INTO `m_suku` (`kd`, `nama`, `postdate`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pasien`
+-- Struktur dari tabel `pasien`
 --
 
 CREATE TABLE `pasien` (
   `kd` varchar(50) NOT NULL,
-  `nama` varchar(100) NOT NULL,
-  `tmp_lahir` varchar(100) NOT NULL,
-  `tgl_lahir` date NOT NULL,
-  `no_identitas` varchar(100) NOT NULL,
-  `jenis_identitas` varchar(100) NOT NULL,
-  `title` varchar(100) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `telepon` varchar(100) NOT NULL,
-  `propinsi` varchar(100) NOT NULL,
-  `kabupaten` varchar(100) NOT NULL,
-  `kecamatan` varchar(100) NOT NULL,
-  `kelurahan` varchar(100) NOT NULL,
-  `alamat_jalan` varchar(100) NOT NULL,
-  `alamat_rt` varchar(100) NOT NULL,
-  `alamat_rw` varchar(100) NOT NULL,
-  `alamat_kodepos` varchar(5) NOT NULL,
-  `postdate` datetime NOT NULL,
-  `no_rm` varchar(100) NOT NULL,
-  `kelamin` varchar(1) NOT NULL,
-  `pekerjaan` varchar(100) NOT NULL,
-  `pendidikan` varchar(100) NOT NULL,
-  `agama` varchar(100) NOT NULL,
-  `suku` varchar(100) NOT NULL,
-  `rhesus` varchar(10) NOT NULL,
-  `warga_negara` varchar(100) NOT NULL,
-  `gol_darah` varchar(100) NOT NULL,
-  `status_nikah` varchar(100) NOT NULL,
-  `kode_booking` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `nama` varchar(100) DEFAULT NULL,
+  `tmp_lahir` varchar(100) DEFAULT NULL,
+  `tgl_lahir` date DEFAULT NULL,
+  `no_identitas` varchar(100) DEFAULT NULL,
+  `jenis_identitas` varchar(100) DEFAULT NULL,
+  `title` varchar(100) DEFAULT NULL,
+  `email` longtext DEFAULT NULL,
+  `telepon` varchar(100) DEFAULT NULL,
+  `propinsi` varchar(100) DEFAULT NULL,
+  `kabupaten` varchar(100) DEFAULT NULL,
+  `kecamatan` varchar(100) DEFAULT NULL,
+  `kelurahan` varchar(100) DEFAULT NULL,
+  `alamat_jalan` varchar(100) DEFAULT NULL,
+  `alamat_rt` varchar(100) DEFAULT NULL,
+  `alamat_rw` varchar(100) DEFAULT NULL,
+  `alamat_kodepos` varchar(5) DEFAULT NULL,
+  `postdate` datetime DEFAULT NULL,
+  `no_rm` varchar(100) DEFAULT NULL,
+  `kelamin` varchar(1) DEFAULT NULL,
+  `pekerjaan` varchar(100) DEFAULT NULL,
+  `pendidikan` varchar(100) DEFAULT NULL,
+  `agama` varchar(100) DEFAULT NULL,
+  `suku` varchar(100) DEFAULT NULL,
+  `rhesus` varchar(10) DEFAULT NULL,
+  `warga_negara` varchar(100) DEFAULT NULL,
+  `gol_darah` varchar(100) DEFAULT NULL,
+  `status_nikah` varchar(100) DEFAULT NULL,
+  `kode_booking` varchar(10) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pasien`
+-- Dumping data untuk tabel `pasien`
 --
 
 INSERT INTO `pasien` (`kd`, `nama`, `tmp_lahir`, `tgl_lahir`, `no_identitas`, `jenis_identitas`, `title`, `email`, `telepon`, `propinsi`, `kabupaten`, `kecamatan`, `kelurahan`, `alamat_jalan`, `alamat_rt`, `alamat_rw`, `alamat_kodepos`, `postdate`, `no_rm`, `kelamin`, `pekerjaan`, `pendidikan`, `agama`, `suku`, `rhesus`, `warga_negara`, `gol_darah`, `status_nikah`, `kode_booking`) VALUES
@@ -8067,18 +8068,18 @@ INSERT INTO `pasien` (`kd`, `nama`, `tmp_lahir`, `tgl_lahir`, `no_identitas`, `j
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pasien_jenisbayar`
+-- Struktur dari tabel `pasien_jenisbayar`
 --
 
 CREATE TABLE `pasien_jenisbayar` (
   `kd` varchar(50) NOT NULL,
-  `kd_pasien` varchar(50) NOT NULL,
-  `jenis_bayar` varchar(100) NOT NULL,
-  `postdate` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `kd_pasien` varchar(50) DEFAULT NULL,
+  `jenis_bayar` varchar(100) DEFAULT NULL,
+  `postdate` datetime DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pasien_jenisbayar`
+-- Dumping data untuk tabel `pasien_jenisbayar`
 --
 
 INSERT INTO `pasien_jenisbayar` (`kd`, `kd_pasien`, `jenis_bayar`, `postdate`) VALUES
@@ -8090,29 +8091,29 @@ INSERT INTO `pasien_jenisbayar` (`kd`, `kd_pasien`, `jenis_bayar`, `postdate`) V
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pasien_keluarga`
+-- Struktur dari tabel `pasien_keluarga`
 --
 
 CREATE TABLE `pasien_keluarga` (
   `kd` varchar(50) NOT NULL,
-  `kd_pasien` varchar(50) NOT NULL,
-  `nama_ayah` varchar(100) NOT NULL,
-  `nama_ibu` varchar(100) NOT NULL,
-  `nama_keluarga` varchar(100) NOT NULL,
-  `nama_pasangan` varchar(100) NOT NULL,
-  `propinsi` varchar(100) NOT NULL,
-  `kabupaten` varchar(100) NOT NULL,
-  `kecamatan` varchar(100) NOT NULL,
-  `kelurahan` varchar(100) NOT NULL,
-  `alamat_jalan` varchar(100) NOT NULL,
-  `alamat_rt` varchar(100) NOT NULL,
-  `alamat_rw` varchar(100) NOT NULL,
-  `alamat_kodepos` varchar(5) NOT NULL,
-  `postdate` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `kd_pasien` varchar(50) DEFAULT NULL,
+  `nama_ayah` varchar(100) DEFAULT NULL,
+  `nama_ibu` varchar(100) DEFAULT NULL,
+  `nama_keluarga` varchar(100) DEFAULT NULL,
+  `nama_pasangan` varchar(100) DEFAULT NULL,
+  `propinsi` varchar(100) DEFAULT NULL,
+  `kabupaten` varchar(100) DEFAULT NULL,
+  `kecamatan` varchar(100) DEFAULT NULL,
+  `kelurahan` varchar(100) DEFAULT NULL,
+  `alamat_jalan` varchar(100) DEFAULT NULL,
+  `alamat_rt` varchar(100) DEFAULT NULL,
+  `alamat_rw` varchar(100) DEFAULT NULL,
+  `alamat_kodepos` varchar(5) DEFAULT NULL,
+  `postdate` datetime DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pasien_keluarga`
+-- Dumping data untuk tabel `pasien_keluarga`
 --
 
 INSERT INTO `pasien_keluarga` (`kd`, `kd_pasien`, `nama_ayah`, `nama_ibu`, `nama_keluarga`, `nama_pasangan`, `propinsi`, `kabupaten`, `kecamatan`, `kelurahan`, `alamat_jalan`, `alamat_rt`, `alamat_rw`, `alamat_kodepos`, `postdate`) VALUES
@@ -8126,22 +8127,22 @@ INSERT INTO `pasien_keluarga` (`kd`, `kd_pasien`, `nama_ayah`, `nama_ibu`, `nama
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pasien_periksa`
+-- Struktur dari tabel `pasien_periksa`
 --
 
 CREATE TABLE `pasien_periksa` (
   `kd` varchar(50) NOT NULL,
-  `kd_pasien` varchar(50) NOT NULL,
-  `tgl_periksa` date NOT NULL,
-  `poli_nama` varchar(100) NOT NULL,
-  `postdate` datetime NOT NULL,
-  `kode_booking` varchar(100) NOT NULL,
-  `postdate_booking` datetime NOT NULL,
+  `kd_pasien` varchar(50) DEFAULT NULL,
+  `tgl_periksa` date DEFAULT NULL,
+  `poli_nama` varchar(100) DEFAULT NULL,
+  `postdate` datetime DEFAULT NULL,
+  `kode_booking` varchar(100) DEFAULT NULL,
+  `postdate_booking` datetime DEFAULT NULL,
   `selesai` enum('true','false') NOT NULL DEFAULT 'false'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pasien_periksa`
+-- Dumping data untuk tabel `pasien_periksa`
 --
 
 INSERT INTO `pasien_periksa` (`kd`, `kd_pasien`, `tgl_periksa`, `poli_nama`, `postdate`, `kode_booking`, `postdate_booking`, `selesai`) VALUES
@@ -8187,16 +8188,16 @@ INSERT INTO `pasien_periksa` (`kd`, `kd_pasien`, `tgl_periksa`, `poli_nama`, `po
 -- --------------------------------------------------------
 
 --
--- Table structure for table `provinsi`
+-- Struktur dari tabel `provinsi`
 --
 
 CREATE TABLE `provinsi` (
   `id_prov` char(2) NOT NULL,
-  `nama` tinytext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `nama` tinytext DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `provinsi`
+-- Dumping data untuk tabel `provinsi`
 --
 
 INSERT INTO `provinsi` (`id_prov`, `nama`) VALUES
@@ -8240,85 +8241,94 @@ INSERT INTO `provinsi` (`id_prov`, `nama`) VALUES
 --
 
 --
--- Indexes for table `adminx`
+-- Indeks untuk tabel `adminx`
 --
 ALTER TABLE `adminx`
   ADD PRIMARY KEY (`kd`);
 
 --
--- Indexes for table `bukutamu`
+-- Indeks untuk tabel `bukutamu`
 --
 ALTER TABLE `bukutamu`
   ADD PRIMARY KEY (`kd`);
 
 --
--- Indexes for table `kabupaten`
+-- Indeks untuk tabel `kabupaten`
 --
 ALTER TABLE `kabupaten`
   ADD PRIMARY KEY (`id_kab`);
 
 --
--- Indexes for table `kecamatan`
+-- Indeks untuk tabel `kecamatan`
 --
 ALTER TABLE `kecamatan`
   ADD PRIMARY KEY (`id_kec`);
 
 --
--- Indexes for table `m_agama`
+-- Indeks untuk tabel `m_agama`
 --
 ALTER TABLE `m_agama`
   ADD PRIMARY KEY (`kd`);
 
 --
--- Indexes for table `m_jenisbayar`
+-- Indeks untuk tabel `m_jenisbayar`
 --
 ALTER TABLE `m_jenisbayar`
   ADD PRIMARY KEY (`kd`);
 
 --
--- Indexes for table `m_pekerjaan`
+-- Indeks untuk tabel `m_pekerjaan`
 --
 ALTER TABLE `m_pekerjaan`
   ADD PRIMARY KEY (`kd`);
 
 --
--- Indexes for table `m_pendidikan`
+-- Indeks untuk tabel `m_pendidikan`
 --
 ALTER TABLE `m_pendidikan`
   ADD PRIMARY KEY (`kd`);
 
 --
--- Indexes for table `pasien`
+-- Indeks untuk tabel `pasien`
 --
 ALTER TABLE `pasien`
   ADD PRIMARY KEY (`kd`);
 
 --
--- Indexes for table `pasien_periksa`
+-- Indeks untuk tabel `pasien_keluarga`
+--
+ALTER TABLE `pasien_keluarga`
+  ADD PRIMARY KEY (`kd`);
+
+--
+-- Indeks untuk tabel `pasien_periksa`
 --
 ALTER TABLE `pasien_periksa`
   ADD PRIMARY KEY (`kd`);
 
 --
--- Indexes for table `provinsi`
+-- Indeks untuk tabel `provinsi`
 --
 ALTER TABLE `provinsi`
   ADD PRIMARY KEY (`id_prov`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `adminx`
+-- AUTO_INCREMENT untuk tabel `adminx`
 --
 ALTER TABLE `adminx`
   MODIFY `kd` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
--- AUTO_INCREMENT for table `m_pekerjaan`
+-- AUTO_INCREMENT untuk tabel `m_pekerjaan`
 --
 ALTER TABLE `m_pekerjaan`
   MODIFY `kd` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

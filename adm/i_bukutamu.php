@@ -27,10 +27,10 @@ if ($aksi == "daftar")
 	echo '<form name="formx21" id="formx21">';
 	
 	//tampilkan daftar...
-	$qku = mysql_query("SELECT * FROM bukutamu ".
+	$qku = mysqli_query($koneksi, "SELECT * FROM bukutamu ".
 							"ORDER BY postdate DESC");
-	$rku = mysql_fetch_assoc($qku);
-	$tku = mysql_num_rows($qku);
+	$rku = mysqli_fetch_assoc($qku);
+	$tku = mysqli_num_rows($qku);
 	
 	//jika null
 	if (!empty($tku))
@@ -99,7 +99,7 @@ if ($aksi == "daftar")
 			</tr>';
 				
 			}
-		while ($rku = mysql_fetch_assoc($qku));
+		while ($rku = mysqli_fetch_assoc($qku));
 		
 		
 		echo '</table>';

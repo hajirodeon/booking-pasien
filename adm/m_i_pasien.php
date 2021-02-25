@@ -27,10 +27,10 @@ if ($aksi == "daftar")
 	echo '<form name="formx21" id="formx21">';
 	
 	//tampilkan daftar...
-	$qku = mysql_query("SELECT * FROM pasien ".
+	$qku = mysqli_query($koneksi, "SELECT * FROM pasien ".
 							"ORDER BY nama ASC");
-	$rku = mysql_fetch_assoc($qku);
-	$tku = mysql_num_rows($qku);
+	$rku = mysqli_fetch_assoc($qku);
+	$tku = mysqli_num_rows($qku);
 	
 	//jika null
 	if (!empty($tku))
@@ -92,30 +92,30 @@ if ($aksi == "daftar")
 			
 			
 			//jenis bayar
-			$qku2 = mysql_query("SELECT * FROM pasien_jenisbayar ".
+			$qku2 = mysqli_query($koneksi, "SELECT * FROM pasien_jenisbayar ".
 									"WHERE kd_pasien = '$ku_kd'");
-			$rku2 = mysql_fetch_assoc($qku2);
+			$rku2 = mysqli_fetch_assoc($qku2);
 			$ku2_jenis_bayar = balikin($rku2['jenis_bayar']);
 
 	
 	
 	
 			//propinsi
-			$qku3 = mysql_query("SELECT * FROM provinsi ".
+			$qku3 = mysqli_query($koneksi, "SELECT * FROM provinsi ".
 									"WHERE id_prov = '$ku_propinsi'");
-			$rku3 = mysql_fetch_assoc($qku3);
+			$rku3 = mysqli_fetch_assoc($qku3);
 			$ku_propinsi = balikin($rku3['nama']);
 	
 			//kabupaten
-			$qku3 = mysql_query("SELECT * FROM kabupaten ".
+			$qku3 = mysqli_query($koneksi, "SELECT * FROM kabupaten ".
 									"WHERE id_kab = '$ku_kabupaten'");
-			$rku3 = mysql_fetch_assoc($qku3);
+			$rku3 = mysqli_fetch_assoc($qku3);
 			$ku_kabupaten = balikin($rku3['nama']);
 	
 			//kecamatan
-			$qku3 = mysql_query("SELECT * FROM kecamatan ".
+			$qku3 = mysqli_query($koneksi, "SELECT * FROM kecamatan ".
 									"WHERE id_kec = '$ku_kecamatan'");
-			$rku3 = mysql_fetch_assoc($qku3);
+			$rku3 = mysqli_fetch_assoc($qku3);
 			$ku_kecamatan = balikin($rku3['nama']);
 	
 	
@@ -150,7 +150,7 @@ if ($aksi == "daftar")
 			</tr>';
 				
 			}
-		while ($rku = mysql_fetch_assoc($qku));
+		while ($rku = mysqli_fetch_assoc($qku));
 		
 		
 		echo '</table>';
@@ -183,7 +183,7 @@ if ($aksi == "hapus")
 
 	
 	//hapus
-	mysql_query("DELETE FROM pasien WHERE kd = '$kd'");
+	mysqli_query($koneksi, "DELETE FROM pasien WHERE kd = '$kd'");
 	
 	//re-direct
 	?>
